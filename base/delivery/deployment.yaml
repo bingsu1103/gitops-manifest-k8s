@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delivery
+  labels:
+    app: delivery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: delivery
+  template:
+    metadata:
+      labels:
+        app: delivery
+    spec:
+      serviceAccountName: delivery      # BẮT BUỘC — TV4 dùng cho AuthorizationPolicy
+      imagePullSecrets:
+        - name: dockerhub-secret
+      containers:
+        - name: delivery
+          image: bingsu1103/delivery:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 30

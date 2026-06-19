@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storefront-bff
+  labels:
+    app: storefront-bff
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storefront-bff
+  template:
+    metadata:
+      labels:
+        app: storefront-bff
+    spec:
+      serviceAccountName: storefront-bff      # BẮT BUỘC — TV4 dùng cho AuthorizationPolicy
+      imagePullSecrets:
+        - name: dockerhub-secret
+      containers:
+        - name: storefront-bff
+          image: bingsu1103/storefront-bff:latest
+          ports:
+            - containerPort: 8087
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8087
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8087
+            initialDelaySeconds: 60
+            periodSeconds: 30

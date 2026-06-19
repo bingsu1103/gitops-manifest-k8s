@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tax
+  labels:
+    app: tax
+spec:
+  selector:
+    app: tax
+  ports:
+    - port: 8091
+      targetPort: 8091
+      protocol: TCP
+  type: ClusterIP
