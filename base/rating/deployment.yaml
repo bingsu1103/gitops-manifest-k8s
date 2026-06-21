@@ -26,7 +26,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres:5432/rating"
+              value: "jdbc:postgresql://postgres-postgresql:5432/rating"
           resources:
             requests:
               memory: "256Mi"
