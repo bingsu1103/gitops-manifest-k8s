@@ -27,6 +27,10 @@ spec:
               value: "k8s"
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://postgres-postgresql:5432/tax"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "password"
           resources:
             requests:
               memory: "256Mi"
