@@ -42,13 +42,13 @@ spec:
               cpu: "500m"
           readinessProbe:
             httpGet:
-              path: /media/actuator/health
+              path: /actuator/health
               port: 8083
             initialDelaySeconds: 30
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /media/actuator/health
+              path: /actuator/health
               port: 8083
             initialDelaySeconds: 120
             periodSeconds: 30
