@@ -25,6 +25,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health,prometheus"
           resources:
             requests:
               memory: "256Mi"
@@ -42,5 +44,5 @@ spec:
             httpGet:
               path: /search/actuator/health
               port: 8092
-            initialDelaySeconds: 60
+            initialDelaySeconds: 120
             periodSeconds: 30

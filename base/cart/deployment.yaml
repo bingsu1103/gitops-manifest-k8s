@@ -25,6 +25,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health,prometheus"
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://postgres-postgresql:5432/cart"
             - name: SPRING_DATASOURCE_USERNAME
@@ -48,5 +50,5 @@ spec:
             httpGet:
               path: /cart/actuator/health
               port: 8084
-            initialDelaySeconds: 60
+            initialDelaySeconds: 120
             periodSeconds: 30
