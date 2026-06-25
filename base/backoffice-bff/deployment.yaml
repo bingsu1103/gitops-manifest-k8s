@@ -25,6 +25,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
+            - name: SPRING_DATA_REDIS_HOST
+              value: "redis-master"
           resources:
             requests:
               memory: "256Mi"
