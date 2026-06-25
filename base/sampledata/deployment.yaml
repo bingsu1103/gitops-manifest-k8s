@@ -29,8 +29,10 @@ spec:
               value: "3"
             - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
               value: "health,prometheus"
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres-postgresql:5432/sampledata"
+            - name: SPRING_DATASOURCE_PRODUCT_URL
+              value: "jdbc:postgresql://postgres-postgresql:5432/product"
+            - name: SPRING_DATASOURCE_MEDIA_URL
+              value: "jdbc:postgresql://postgres-postgresql:5432/media"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD

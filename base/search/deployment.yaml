@@ -25,6 +25,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "k8s"
+            - name: ELASTICSEARCH_URL
+              value: "elasticsearch:9200"
             - name: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
               value: "3"
             - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
